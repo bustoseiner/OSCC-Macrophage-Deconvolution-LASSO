@@ -2,7 +2,7 @@
 
 [![R Version](https://img.shields.io/badge/R-4.5.3-blue.svg)](https://www.r-project.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![OSF Preregistration](https://img.shields.io/badge/OSF-Preregistered-brightgreen.svg)](INSERT_YOUR_OSF_LINK_HERE)
+[![OSF Preregistration](https://img.shields.io/badge/OSF-Preregistered-brightgreen.svg)](https://osf.io/7nr2z/)
 
 ## Overview
 This repository contains the complete bioinformatics analytical pipeline, statistical survival models, and machine-learning code accompanying the manuscript submitted to *Oral Surgery, Oral Medicine, Oral Pathology and Oral Radiology (OOOO)*:
