@@ -5,7 +5,7 @@
 [![OSF Preregistration](https://img.shields.io/badge/OSF-Preregistered-brightgreen.svg)](https://osf.io/7nr2z/)
 
 ## Overview
-This repository contains the complete bioinformatics analytical pipeline, statistical survival models, and machine-learning code accompanying the manuscript submitted to *Oral Surgery, Oral Medicine, Oral Pathology and Oral Radiology (OOOO)*:
+This repository contains the complete bioinformatics analytical pipeline, statistical survival models, and machine-learning code accompanying the manuscript submitted to ... :
 
 > **"Multi-Algorithm Immune Deconvolution and LASSO Machine Learning Reveal Macrophage Exhaustion and a 12-Gene Prognostic Signature in Oral Squamous Cell Carcinoma"**
 
