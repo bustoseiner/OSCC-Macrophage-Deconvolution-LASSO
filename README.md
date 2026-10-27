@@ -1,7 +1,3 @@
-# OSCC-Macrophage-Deconvolution-LASSO
-Multi-Algorithm Immune Deconvolution (CIBERSORT, quanTIseq, xCell) and a 12-Gene LASSO Prognostic Signature in Oral Squamous Cell Carcinoma (TCGA-HNSC).
-
-
 # Multi-Algorithm Immune Deconvolution and LASSO Machine Learning in Oral Squamous Cell Carcinoma (OSCC)
 
 [![R Version](https://img.shields.io/badge/R-4.5.3-blue.svg)](https://www.r-project.org/)
