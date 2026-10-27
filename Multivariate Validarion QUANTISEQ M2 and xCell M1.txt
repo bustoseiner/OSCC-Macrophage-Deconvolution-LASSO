@@ -1,0 +1,95 @@
+[1] "--- QUANTISEQ M2 MULTIVARIATE RESULTS ---"
+> summary(cox_quant)
+Call:
+coxph(formula = Surv(OS_time_months, OS_status) ~ M2_quant_Group + 
+    age_at_index + gender + ajcc_pathologic_stage, data = merged_data)
+
+  n= 185, number of events= 72 
+   (34 observations deleted due to missingness)
+
+                                   coef exp(coef) se(coef)      z Pr(>|z|)
+M2_quant_GroupLow               0.80967   2.24718  0.31330  2.584  0.00976
+age_at_index                    0.02231   1.02256  0.01181  1.889  0.05886
+gendermale                     -0.11817   0.88854  0.28701 -0.412  0.68054
+ajcc_pathologic_stageStage II   0.20185   1.22367  0.68491  0.295  0.76821
+ajcc_pathologic_stageStage III  0.70138   2.01654  0.65053  1.078  0.28096
+ajcc_pathologic_stageStage IVA  1.32175   3.74999  0.61348  2.155  0.03120
+ajcc_pathologic_stageStage IVB  1.32225   3.75186  0.92596  1.428  0.15330
+                                 
+M2_quant_GroupLow              **
+age_at_index                   . 
+gendermale                       
+ajcc_pathologic_stageStage II    
+ajcc_pathologic_stageStage III   
+ajcc_pathologic_stageStage IVA * 
+ajcc_pathologic_stageStage IVB   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+                               exp(coef) exp(-coef) lower .95 upper .95
+M2_quant_GroupLow                 2.2472     0.4450    1.2161     4.153
+age_at_index                      1.0226     0.9779    0.9992     1.046
+gendermale                        0.8885     1.1254    0.5063     1.559
+ajcc_pathologic_stageStage II     1.2237     0.8172    0.3196     4.684
+ajcc_pathologic_stageStage III    2.0165     0.4959    0.5635     7.217
+ajcc_pathologic_stageStage IVA    3.7500     0.2667    1.1268    12.480
+ajcc_pathologic_stageStage IVB    3.7519     0.2665    0.6110    23.037
+
+Concordance= 0.649  (se = 0.037 )
+Likelihood ratio test= 22.84  on 7 df,   p=0.002
+Wald test            = 22.19  on 7 df,   p=0.002
+Score (logrank) test = 23.36  on 7 df,   p=0.001
+
+> 
+> 
+> # --- TEST 2: xCell M1 (Testing if gene signaling is independent) ---
+> # 1. Create the optimal cutpoint and grouping for xCell M1
+> merged_data$M1_xcell <- as.numeric(as.character(merged_data$`Macrophage M1_XCELL`))
+> cut_xcell_m1 <- surv_cutpoint(merged_data, time = "OS_time_months", event = "OS_status", variables = "M1_xcell")
+> merged_data$M1_xcell_Group <- ifelse(merged_data$M1_xcell >= cut_xcell_m1$cutpoint$cutpoint, "High", "Low")
+> 
+> # 2. Run the Multivariate Cox Model
+> cox_xcell <- coxph(Surv(OS_time_months, OS_status) ~ M1_xcell_Group + age_at_index + gender + ajcc_pathologic_stage, data = merged_data)
+> 
+> print("--- XCELL M1 MULTIVARIATE RESULTS ---")
+[1] "--- XCELL M1 MULTIVARIATE RESULTS ---"
+> summary(cox_xcell)
+Call:
+coxph(formula = Surv(OS_time_months, OS_status) ~ M1_xcell_Group + 
+    age_at_index + gender + ajcc_pathologic_stage, data = merged_data)
+
+  n= 185, number of events= 72 
+   (34 observations deleted due to missingness)
+
+                                   coef exp(coef) se(coef)      z Pr(>|z|)
+M1_xcell_GroupLow               0.61085   1.84200  0.24563  2.487   0.0129
+age_at_index                    0.02342   1.02369  0.01185  1.976   0.0482
+gendermale                     -0.15243   0.85862  0.28893 -0.528   0.5978
+ajcc_pathologic_stageStage II  -0.02783   0.97256  0.68551 -0.041   0.9676
+ajcc_pathologic_stageStage III  0.53690   1.71069  0.65627  0.818   0.4133
+ajcc_pathologic_stageStage IVA  1.14483   3.14190  0.61962  1.848   0.0647
+ajcc_pathologic_stageStage IVB  1.20156   3.32532  0.91814  1.309   0.1906
+                                
+M1_xcell_GroupLow              *
+age_at_index                   *
+gendermale                      
+ajcc_pathologic_stageStage II   
+ajcc_pathologic_stageStage III  
+ajcc_pathologic_stageStage IVA .
+ajcc_pathologic_stageStage IVB  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+                               exp(coef) exp(-coef) lower .95 upper .95
+M1_xcell_GroupLow                 1.8420     0.5429    1.1382     2.981
+age_at_index                      1.0237     0.9769    1.0002     1.048
+gendermale                        0.8586     1.1647    0.4874     1.513
+ajcc_pathologic_stageStage II     0.9726     1.0282    0.2538     3.728
+ajcc_pathologic_stageStage III    1.7107     0.5846    0.4727     6.191
+ajcc_pathologic_stageStage IVA    3.1419     0.3183    0.9328    10.583
+ajcc_pathologic_stageStage IVB    3.3253     0.3007    0.5499    20.107
+
+Concordance= 0.661  (se = 0.036 )
+Likelihood ratio test= 23.04  on 7 df,   p=0.002
+Wald test            = 21.67  on 7 df,   p=0.003
+Score (logrank) test = 22.88  on 7 df,   p=0.002
